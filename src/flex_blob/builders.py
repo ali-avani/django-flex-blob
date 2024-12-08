@@ -2,13 +2,12 @@ import mimetypes
 from datetime import datetime
 from functools import lru_cache
 
-from .utils import get_all_subclasses
-
 from django.conf import settings
 from django.http.response import HttpResponseBase
 from django.utils.http import http_date
 
 from .models import FileModel
+from .utils import get_all_subclasses
 
 DJANGO_STORAGE_BACKEND = "django.core.files.storage.FileSystemStorage"
 
@@ -83,4 +82,4 @@ class GoogleStorageResponseBuilder(DefaultStorageResponseBuilder):
 
     @classmethod
     def get_last_modified(cls, file_record: FileModel):
-        return file_record.file.file.flex_blob.updated.timestamp()
+        return file_record.file.file.updated.timestamp()
