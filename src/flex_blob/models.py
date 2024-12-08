@@ -18,6 +18,7 @@ class FileModel(models.Model):
         verbose_name=_("File"),
         db_index=True,
     )
+    uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Uploaded at"))
 
     def check_auth(self, request=None):
         subclass_instance = self.get_subclass_instance()

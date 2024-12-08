@@ -82,4 +82,4 @@ class GoogleStorageResponseBuilder(DefaultStorageResponseBuilder):
 
     @classmethod
     def get_last_modified(cls, file_record: FileModel):
-        return file_record.file.file.updated.timestamp()
+        return file_record.uploaded_at.timestamp()
