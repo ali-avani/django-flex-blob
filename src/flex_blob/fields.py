@@ -7,6 +7,7 @@ class DynamicFileField(models.FileField):
 
         if validators := getattr(model_instance, "get_validators", None):
             assert callable(validators)
-            (validator(cleaned_value) for validator in validators())
+            for validator in validators():
+                validator(cleaned_value)
 
         return cleaned_value
