@@ -1,4 +1,5 @@
-from django.conf import settings
+import datetime
+
 from django.http import (
     HttpRequest,
     HttpResponseBadRequest,
@@ -7,7 +8,6 @@ from django.http import (
 )
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.static import serve
 
 from .builders import BlobResponseBuilder
 from .models import FileModel
@@ -19,7 +19,10 @@ class MediaAuthorizationView(View):
             return HttpResponseBadRequest(_("Invalid file path."))
 
         if not (file_record := FileModel.objects.filter(file=path).first()):
-            return serve(request, path, document_root=settings.MEDIA_ROOT)
+            try:
+                return self.serve_file(FileModel(file=path, uploaded_at=datetime.datetime.now()))
+            except FileNotFoundError:
+                return HttpResponseBadRequest(_("File not found."))
 
         if not file_record.check_auth(request):
             return HttpResponseForbidden(_("You are not authorized to access this file."))
