@@ -13,19 +13,16 @@ from .builders import BlobResponseBuilder
 from .models import FileModel
 
 
-class MediaAuthorizationView(View):
+class MediaView(View):
     def get(self, request: HttpRequest, path: str):
         if not path:
             return HttpResponseBadRequest(_("Invalid file path."))
 
-        if not (file_record := FileModel.objects.filter(file=path).first()):
-            try:
-                return self.serve_file(FileModel(file=path, uploaded_at=datetime.datetime.now()))
-            except FileNotFoundError:
-                return HttpResponseBadRequest(_("File not found."))
-
-        if not file_record.check_auth(request):
-            return HttpResponseForbidden(_("You are not authorized to access this file."))
+        if file_record := FileModel.objects.filter(file=path).first():
+            if not (request.user and request.user.is_staff) and not file_record.check_auth(request):
+                return HttpResponseForbidden(_("You are not authorized to access this file."))
+        else:
+            file_record = FileModel(file=path, uploaded_at=datetime.datetime.now())
 
         return self.serve_file(file_record)
 
@@ -35,5 +32,8 @@ class MediaAuthorizationView(View):
                 while chunk := file_obj.read(chunk_size):
                     yield chunk
 
-        response = StreamingHttpResponse(file_iterator())
-        return BlobResponseBuilder.build_response(file_record, response)
+        try:
+            response = StreamingHttpResponse(file_iterator())
+            return BlobResponseBuilder.build_response(file_record, response)
+        except FileNotFoundError:
+            return HttpResponseBadRequest(_("File not found."))
