@@ -3,17 +3,8 @@ Django Flex Blob
 ================
 
 
-.. image:: https://img.shields.io/pypi/v/django_flex_blob.svg
-        :target: https://pypi.python.org/pypi/django_flex_blob
-
-.. image:: https://img.shields.io/travis/ali-avani/django_flex_blob.svg
-        :target: https://travis-ci.com/ali-avani/django_flex_blob
-
-.. image:: https://readthedocs.org/projects/django-flex-blob/badge/?version=latest
-        :target: https://django-flex-blob.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
-
-
+.. image:: https://img.shields.io/pypi/v/django-flex-blob.svg
+        :target: https://pypi.python.org/pypi/django-flex-blob
 
 
 A django app dedicated for managing media files and access to them
