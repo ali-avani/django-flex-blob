@@ -20,7 +20,7 @@ class MediaView(View):
 
         if file_record := FileModel.objects.filter(file=path).first():
             if not (request.user and request.user.is_staff) and not file_record.check_auth(request):
-                return HttpResponseForbidden(_("You are not authorized to access this file."))
+                return HttpResponseBadRequest(_("Invalid file path."))
         else:
             file_record = FileModel(file=path, uploaded_at=datetime.datetime.now())
 
@@ -36,4 +36,4 @@ class MediaView(View):
             response = StreamingHttpResponse(file_iterator())
             return BlobResponseBuilder.build_response(file_record, response)
         except FileNotFoundError:
-            return HttpResponseBadRequest(_("File not found."))
+            return HttpResponseBadRequest(_("Invalid file path."))
