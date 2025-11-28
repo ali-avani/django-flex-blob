@@ -8,12 +8,12 @@ dynamic = ["version"]
 description = "A django app dedicated for managing media files and access to them"
 readme = "README.rst"
 authors = [
-  {name = "Ali Avani", email = "ali.avani.1410@gmail.com"}
-  {name = "Saman Zand Haghighi", email = "samanzandh@gmail.com"},
+  {name = "Ali Avani", email = "ali.avani.1410@gmail.com"},
+  {name = "Saman Zand Haghighi", email = "samanzandh@gmail.com"}
 ]
 maintainers = [
-  {name = "Ali Avani", email = "ali.avani.1410@gmail.com"}
-  {name = "Saman Zand Haghighi", email = "samanzandh@gmail.com"},
+  {name = "Ali Avani", email = "ali.avani.1410@gmail.com"},
+  {name = "Saman Zand Haghighi", email = "samanzandh@gmail.com"}
 ]
 classifiers = [
 
