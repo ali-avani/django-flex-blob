@@ -83,3 +83,7 @@ class GoogleStorageResponseBuilder(DefaultStorageResponseBuilder):
     @classmethod
     def get_last_modified(cls, file_record: FileModel):
         return file_record.uploaded_at.timestamp()
+
+
+class S3Boto3StorageResponseBuilder(GoogleStorageResponseBuilder):
+    storage_backend = "storages.backends.s3boto3.S3Boto3Storage"
