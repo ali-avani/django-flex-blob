@@ -5,8 +5,8 @@ Credits
 Development Lead
 ----------------
 
+* Ali Avani <ali.avani.1410@gmail.com>
 * Saman Zand HAghighi <samanzandh@gmail.com>
-* Ali Avani <ali.avani@outlook.com>
 
 Contributors
 ------------

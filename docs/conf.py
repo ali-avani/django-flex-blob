@@ -19,6 +19,7 @@
 #
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('..'))
 
 import flex_blob
@@ -47,8 +48,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Django Flex Blob'
-copyright = "2024, Saman Zand HAghighi"
-author = "Saman Zand HAghighi"
+copyright = "2026, Ali Avani"
+author = "Ali Avani"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -129,7 +130,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'django_flex_blob.tex',
      'Django Flex Blob Documentation',
-     'Saman Zand HAghighi', 'manual'),
+     'Ali Avani', 'manual'),
 ]
 
 
